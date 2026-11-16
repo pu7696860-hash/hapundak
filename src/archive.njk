@@ -1,0 +1,12 @@
+---
+layout: layouts/base.njk
+title: ארכיון הגיליונות
+nav: archive
+permalink: /archive/
+eleventyExcludeFromCollections: true
+---
+{%- set phName = "ארכיון הגיליונות" %}{% set phSub = "כל גיליון לקריאה, ובגרסת שחור-לבן נוחה להדפסה" -%}
+{% include "partials/pagehead.njk" %}
+<section class="archive"><div class="wrap">
+ <div class="covers">{% for x in collections.issues %}<div class="iss{% if loop.first %} cur{% endif %}"><a href="{{ x.url }}"><img src="{{ x.data.cover }}" alt="שער גיליון {{ x.data.number }}" loading="lazy"></a><b>גיליון {{ x.data.number }}</b><span>{{ x.data.month }}</span><a href="{{ x.data.pdf }}" class="pdf" target="_blank" rel="noopener">{% include "partials/i-book.njk" %} בצבע</a><a href="{{ x.data.pdf_bw }}" class="pdf" download>{% include "partials/i-print.njk" %} שחור-לבן</a></div>{% endfor %}</div>
+</div></section>

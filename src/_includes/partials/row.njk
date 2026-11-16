@@ -1,0 +1,2 @@
+{%- set c = p.data.kind | catOf -%}
+<a href="{{ p.url }}" class="piece"><div><div class="meta">{{ p.data.label or p.data.section or c.label }}<i>· גיליון {{ p.data.issue }}</i></div><h4>{{ p.data.title }}</h4><p class="by">{{ p.data.author }}</p><p class="ex">{{ p.data.teaser }}</p><div class="ft"><span><b>לקריאה</b> ←</span><span>💬 תגובות</span></div></div>{% if p.data.image %}<div class="img"><img src="{{ p.data.image }}" alt="" loading="lazy"></div>{% endif %}</a>

@@ -1,0 +1,26 @@
+<section class="submit" id="send"><div class="wrap">
+ <div><span class="lbl">מתכוננים לגיליון הבא</span><h3>שלחי יצירה לפונדק</h3><p class="lead">את מוזמנת בחום. היצירה מגיעה ישר למייל של הפונדק.</p>
+  <ol class="rules">
+   <li><i>1</i><div><b>יצירה אחת בכל נושא, עד 1500 מילים</b><span>יצירה ארוכה יותר? שלחי 1500 מילים עכשיו, ואת ההמשך לגיליון הבא.</span></div></li>
+   <li><i>2</i><div><b>אפשר שתי יצירות, אם אחת מהן שיר</b><span>הקפידי על פיסוק תקין.</span></div></li>
+   <li><i>3</i><div><b>קובץ Word עם שם היצירה ושמך</b><span>כל הזכויות על היצירה שמורות לך.</span></div></li>
+  </ol></div>
+ <form class="form fly-form" data-kind="send" action="https://formsubmit.co/{{ site.email }}" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="_subject" value="יצירה חדשה לפונדק">
+  <input type="hidden" name="_next" value="">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label>שם היוצרת לפרסום<input name="שם לפרסום" required placeholder="שרה כהן"></label>
+  <label>המייל שלך<input name="email" type="email" required placeholder="name@gmail.com" dir="ltr"></label>
+  <label>שם היצירה<input name="שם היצירה" required placeholder="שם היצירה"></label>
+  <label>סוג<select name="סוג"><option>שיר</option><option>סיפור קצר</option><option>פרק בסיפור בהמשכים</option><option>כתבה</option><option>הגיגים / מחשבות</option><option>מאמר / טור</option></select></label>
+  <label class="full">קובץ Word<input name="attachment" type="file" accept=".doc,.docx,.rtf,.odt,.txt,.pdf"></label>
+  <label class="full">אין קובץ? אפשר להדביק כאן את היצירה<textarea name="היצירה (מודבקת)" rows="3" placeholder="הדביקי כאן את היצירה, אם לא צירפת קובץ"></textarea></label>
+  <label class="full">מילה לעורכת (לא חובה)<textarea name="מילה לעורכת" rows="2"></textarea></label>
+  <label class="full chk"><input name="לא לפרסם את המייל" value="נא לא לפרסם את המייל" type="checkbox">לא לפרסם את המייל שלי ליד היצירה</label>
+  <p class="err" hidden>צריך לצרף קובץ, או להדביק את היצירה בתיבה 🙂</p>
+  <div class="full sendwrap"><button class="send" type="submit"><span class="fill"></span><span class="t">שליחה לפונדק</span><span class="done">נשלח בהצלחה ✓</span></button></div>
+  <p class="to">היצירה תישלח אל <b>{{ site.email }}</b> עם שם היצירה, שמך והמייל שלך.</p>
+ </form>
+</div></section>

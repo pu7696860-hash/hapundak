@@ -1,0 +1,5 @@
+---
+layout: layouts/base.njk
+---
+{%- set I = collections.issues | issueItem(number) -%}{%- set I = I.data -%}{%- set LETTER = content -%}
+{% include "partials/issue-home.njk" %}

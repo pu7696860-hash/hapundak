@@ -1,0 +1,7 @@
+---
+layout: layouts/base.njk
+nav: home
+eleventyExcludeFromCollections: true
+---
+{%- set I = collections.issues[0].data -%}{%- set LETTER = collections.issues[0].content -%}
+{% include "partials/issue-home.njk" %}

@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+title: על הפונדק
+nav: about
+permalink: /about/
+eleventyExcludeFromCollections: true
+---
+{%- set phName = "על הפונדק" %}{% set phSub = site.tagline -%}
+{% include "partials/pagehead.njk" %}
+<section class="aboutp"><div class="wrap"><div class="about-in">
+ <img src="/assets/img/logo.png" alt="פונדק" class="about-logo">
+ <div class="txt">{{ site.about | md | safe }}</div>
+ <div class="sign"><div class="av">{{ site.editor | firstLetter }}</div><div><b>{{ site.editor }}</b><span>{{ site.editor_role }}</span></div></div>
+ <div class="btns"><a href="/" class="btn">{% include "partials/i-book.njk" %} לגיליון החדש</a><a href="/send/" class="btn ghost">שליחת יצירה</a></div>
+</div></div></section>

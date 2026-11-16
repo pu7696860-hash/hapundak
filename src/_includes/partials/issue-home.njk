@@ -1,0 +1,38 @@
+{#- expects: I (issue data), LETTER (html) -#}
+{%- set ps = collections.pieces | ofIssue(I.number) -%}
+<section class="letter"><div class="wrap">
+ <div>
+  <span class="lbl">{% if LETTER | trim %}דבר העורכת{% else %}גיליון {{ I.number }}{% endif %}</span>
+  <h2>{{ I.letter_title or ("גיליון " + I.number + (" · " + I.theme if I.theme else "")) }}</h2>
+  <div class="txt">{% if LETTER | trim %}{{ LETTER | safe }}{% else %}<p>כל הגיליון מחכה לך בקובץ אחד: לקריאה בצבע על המסך, או בשחור-לבן להדפסה.</p>{% endif %}</div>
+  {% if LETTER | trim %}<div class="sign"><div class="av">{{ site.editor | firstLetter }}</div><div><b>{{ site.editor }}</b><span>{{ site.editor_role }}</span></div></div>{% endif %}
+  <div class="btns">{% if ps.length %}<a href="#toc" class="btn">{% include "partials/i-book.njk" %} לקריאת הגיליון</a>{% else %}<a href="{{ I.pdf }}" class="btn" target="_blank" rel="noopener">{% include "partials/i-book.njk" %} לקריאת הגיליון (PDF)</a>{% endif %}<a href="{{ I.pdf_bw }}" class="btn ghost" download>{% include "partials/i-print.njk" %} PDF שחור-לבן להדפסה</a></div>
+ </div>
+ <figure class="cover"><img src="{{ I.cover }}" alt="שער גיליון {{ I.number }}"><figcaption>גיליון {{ I.number }} · {{ I.month }}</figcaption></figure>
+</div></section>
+{% if I.quote %}<section class="quote"><div class="wrap"><div class="q">”</div><blockquote>{{ I.quote }}</blockquote><cite>{{ I.quote_source }}</cite></div></section>{% endif %}
+{% if ps.length %}
+<section class="toc2" id="toc"><div class="wrap">
+ <div class="pieces-h"><div><h3>עניינים של תוכן</h3><p class="sub2">כל התכנים של גיליון {{ I.number }}. לחצי על קובייה כדי להיכנס</p></div><div class="legend"><i class="k-poem">שירים</i><i class="k-story">סיפורים</i><i class="k-series">בהמשכים</i><i class="k-orig">תוכן מקורי</i></div></div>
+ {% set mw = ps | mainWorks %}{% set more = ps | moreWorks %}
+ {% if mw.length %}<h5 class="cgh">יצירות החודש</h5><div class="cubes c6">{% for p in mw %}{% include "partials/cube.njk" %}{% endfor %}</div>{% endif %}
+ {% if more.length %}<h5 class="cgh">בהמשכים, טור אישי ותוכן מקורי</h5><div class="cubes c5">{% for p in more %}{% include "partials/cube.njk" %}{% endfor %}</div>{% endif %}
+</div></section>
+{% endif %}
+<section class="printband"><div class="wrap">
+ <div class="pb-art">{% set cover = I.cover %}{% include "partials/hands.njk" %}</div>
+ <div class="pb-txt"><h3><span class="pr-ic">{% include "partials/i-printer.njk" %}</span>גיליון {{ I.number }} להדפסה</h3><p>כל הגיליון בקובץ אחד, בשחור-לבן. להדפיס בזול, לקרוא על נייר, גם בשבת, ולהשאיל לחברה נחמדת.</p>
+  <div class="btns"><a href="{{ I.pdf_bw }}" class="btn" download>{% include "partials/i-print.njk" %} הורדת PDF שחור-לבן</a><a href="/archive/" class="btn ghost">{% include "partials/i-book.njk" %} גיליונות קודמים</a></div></div>
+</div></section>
+<section class="cats"><div class="wrap"><div class="pieces-h"><div><h3>אפשר לדפדף גם מכאן</h3><p class="sub2">לא כזה משנה, אבל מה שנוח לך 😊</p></div></div>
+ <div class="tiles">
+ {% for c in cats %}{% set cp = collections.pieces | ofCat(c.key) %}{% set wi = cp | withImage %}{% set own = cp | ofIssue(I.number) %}
+  <a href="/{{ c.slug }}/" class="tile{% if c.key == 'original' %} hl{% endif %}"><img src="{{ c.tile or (wi[0].data.image if wi.length else I.cover) }}" alt=""><div><small>{% if c.key == 'original' %}✦ מהעורכת ומבחוץ{% elif c.key == 'series' %}סיפורים וטור אישי{% elif c.key == 'articles' %}מחשבות וכתבות{% else %}{{ own.length }} בגיליון{% endif %}</small><b>{{ c.name }}</b></div></a>
+ {% endfor %}
+ </div></div></section>
+<section class="ctaband"><div class="wrap"><div><h3>יש לך יצירה במגירה?</h3><p>הגיליון הבא כבר בהכנה, והפונדק מחכה לך.</p></div>{% set sid = "mid" %}{% include "partials/stamp.njk" %}</div></section>
+{% set older = collections.issues | excludeNum(I.number) %}
+{% if older.length %}<section class="archstrip"><div class="wrap"><div class="pieces-h"><div><h3>גיליונות קודמים</h3><p class="sub2">נכון שזה כבר היה, אבל זה עדיין מעניין</p></div><a href="/archive/" class="more">לכל הארכיון</a></div>
+ <div class="covers">{% for x in older | head(6) %}<a href="{{ x.url }}" class="iss"><img src="{{ x.data.cover }}" alt="שער גיליון {{ x.data.number }}" loading="lazy"><b>גיליון {{ x.data.number }}</b><span>{{ x.data.month }}</span></a>{% endfor %}</div></div></section>{% endif %}
+<section class="wrap talk-wrap">{% set talkId = "issue-" + I.number %}{% set talkTitle = "גיליון " + I.number %}{% include "partials/talk.njk" %}</section>
+{% include "partials/contact-form.njk" %}

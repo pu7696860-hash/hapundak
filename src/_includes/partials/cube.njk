@@ -1,0 +1,3 @@
+{%- set c = p.data.kind | catOf -%}
+{%- set full = p.data.image and (c.key == "poems" or c.key == "stories") -%}
+<a href="{{ p.url }}" class="cube{% if not full %} noimg{% endif %} k-{{ c.cls }}">{% if full %}<div class="cimg"><img src="{{ p.data.image }}" alt="" loading="lazy"></div>{% else %}<div class="cicon{% if p.data.image %} th{% endif %}">{% if p.data.image %}<img src="{{ p.data.image }}" alt="" loading="lazy">{% elif p.data.kind == "טור אישי" %}✎{% else %}{{ c.icon }}{% endif %}</div>{% endif %}<div class="cbd"><small>{{ p.data.label or p.data.section or p.data.kind }}</small><b>{{ p.data.title }}</b><span>{{ p.data.author }}</span><p>{{ p.data.teaser }}</p></div></a>

@@ -1,0 +1,16 @@
+<section class="contact" id="contact"><div class="wrap">
+ <div><span class="lbl">צור קשר</span><h3>רוצה לשאול, להציע, או סתם לפרגן?</h3><p class="lead">נשמח לשמוע ממך. כל הודעה מגיעה ישר אלינו, ואנחנו עונות באהבה.</p>
+  <div class="mail"><span>או במייל:</span><b><a href="mailto:{{ site.email }}">{{ site.email }}</a></b></div></div>
+ <form class="form fly-form" data-kind="contact" action="https://formsubmit.co/{{ site.email }}" method="POST">
+  <input type="hidden" name="_subject" value="הודעה מהאתר">
+  <input type="hidden" name="_next" value="">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label>שם<input name="שם" required placeholder="השם שלך"></label>
+  <label>מייל לחזרה<input name="email" type="email" required placeholder="name@gmail.com" dir="ltr"></label>
+  <label class="full">נושא<select name="נושא"><option>שאלה</option><option>הצעה לשיתוף פעולה</option><option>פרגון לפונדק</option><option>הגיגים / מחשבות</option><option>אחר</option></select></label>
+  <label class="full">ההודעה שלך<textarea name="הודעה" rows="4" required></textarea></label>
+  <div class="full sendwrap"><button class="send" type="submit"><span class="fill"></span><span class="t">שליחת הודעה</span><span class="done">ההודעה נשלחה ✓</span></button></div>
+ </form>
+</div></section>

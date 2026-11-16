@@ -1,0 +1,43 @@
+/* Additions for the real site (on top of the approved design in site.css) */
+.k-art{--kc:#8a5a8f}
+.hp{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;border:0!important;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);opacity:0}
+.site .form .err{grid-column:1/-1;margin:0;color:#b42318;font-weight:600;font-size:.92rem}
+.talk-wrap{padding-block:clamp(28px,5vw,56px)}
+.talk-note{font-size:.82rem;color:var(--mute);margin:.6em 0 0}
+.c-soon{background:var(--m-soft);border-radius:14px;padding:18px 20px;margin-top:4px}
+.c-soon b{display:block;font-size:1.02rem;color:var(--brand-ink)}
+.c-soon p{margin:.4em 0 0;color:var(--mute);font-size:.95rem}
+.c-soon a{color:var(--m-deep);text-decoration:underline;text-underline-offset:3px}
+#cusdis_thread{min-height:120px}
+.ptext p{margin:0 0 1em}
+.poem2 p{margin:0 0 1.2em}
+.rp-book img{object-fit:contain;background:var(--m-soft)}
+.site button.btn{font:inherit;cursor:pointer}
+.site .catlist .cgh{margin-top:28px}
+.archive .iss .pdf+.pdf{margin-inline-start:8px}
+.aboutp,.thanksp{padding-block:clamp(36px,6vw,72px)}
+.about-in{max-width:680px;margin-inline:auto;display:grid;gap:22px;justify-items:start}
+.about-logo{width:180px;height:auto}
+.about-in .txt{font-family:"Noto Serif Hebrew",serif;font-size:1.12rem;line-height:1.9}
+.ty{max-width:560px;margin-inline:auto;text-align:center;display:grid;gap:14px;justify-items:center}
+.ty h2{font-size:clamp(1.6rem,4vw,2.3rem)}
+.ty p{color:var(--mute);margin:0}
+.ty-cup svg{width:120px;height:120px}
+.ty-cup .s1,.ty-cup .s2{animation:tyst 2.4s ease-in-out infinite}
+.ty-cup .s2{animation-delay:.6s}
+@keyframes tyst{0%,100%{opacity:.25;transform:translateY(4px)}50%{opacity:.9;transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.ty-cup .s1,.ty-cup .s2{animation:none}}
+/* printing one piece */
+@media print{
+ .topline,.mast,.menu,.foot,.back,.rp-side,.rp-end,.pn,.rp-img,.crumb{display:none!important}
+ .site,.site *{color:#000!important;background:transparent!important}
+ .rp-grid{display:block!important}
+ .ptext{font-size:12pt;line-height:1.7}
+}
+.ptext.poem2{white-space:normal}
+.secchips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 6px}
+.secchips span{font-size:.85rem;color:var(--mute);margin-inline-end:4px}
+.secchips a{background:var(--m-soft);color:var(--m-deep);border-radius:999px;padding:5px 14px;font-size:.9rem;font-weight:600;transition:background .2s}
+.secchips a:hover{background:var(--m-mid)}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.sechead .more{font-size:.85rem;color:var(--m-deep);font-weight:600;white-space:nowrap}

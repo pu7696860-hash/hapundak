@@ -1,0 +1,11 @@
+---
+layout: layouts/base.njk
+---
+{%- set c = cats | selectattr("name", "equalto", tab) | first -%}{%- set c = c or cats[2] -%}
+<header class="page-h"><div class="wrap">{% set fab = false %}{% include "partials/back.njk" %}<nav class="crumb"><a href="/">גיליון {{ collections.issues[0].data.number }}</a><span>›</span><a href="/{{ c.slug }}/">{{ c.name }}</a><span>›</span><b>{{ name }}</b></nav><h2>{{ name }}</h2><p>{{ type }}{% if author %} · {{ author }}{% endif %}{% if description %} · {{ description }}{% endif %}</p></div></header>
+{%- set list = collections.pieces | ofSection(name) -%}
+<div class="wrap catlist">
+{% if list.length %}{% for p in list %}{% include "partials/row.njk" %}{% endfor %}
+{% else %}<div class="empty"><div><b>✍️ {{ name }}</b><p>המדור הזה לא מופיע בגיליון הנוכחי. כשיתפרסם בו משהו חדש, הוא יופיע כאן.</p><a href="/{{ c.slug }}/" class="btn">לכל {{ c.name }}</a></div></div>{% endif %}
+</div>
+<section class="wrap talk-wrap">{% set talkId = "madur-" + page.fileSlug %}{% set talkTitle = name %}{% include "partials/talk.njk" %}</section>

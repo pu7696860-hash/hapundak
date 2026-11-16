@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: cats
+  size: 1
+  alias: cat
+permalink: "/{{ cat.slug }}/"
+eleventyComputed:
+  title: "{{ cat.name }}"
+  nav: "{{ cat.key }}"
+eleventyExcludeFromCollections: true
+---
+{%- set phName = cat.name %}{% set phSub = cat.sub -%}
+{% include "partials/pagehead.njk" %}
+{%- set list = collections.pieces | ofCat(cat.key) -%}
+{%- set secs = collections.sections | sectionsOfTab(cat) -%}
+{%- set loose = list | noSectionIn(secs) -%}
+<div class="wrap catlist">
+{% if secs.length %}<nav class="secchips" aria-label="מדורים"><span>המדורים כאן:</span>{% for s in secs %}<a href="{{ s.url }}">{{ s.data.name }}</a>{% endfor %}</nav>{% endif %}
+{% for s in secs %}{% set sp = list | ofSection(s.data.name) %}{% if sp.length %}
+ <div class="sechead" id="{{ s.page.fileSlug }}"><h5 class="cgh">{{ s.data.name }}{% if s.data.author %} · {{ s.data.author }}{% endif %}</h5><a href="{{ s.url }}" class="more">לכל המדור ←</a></div>
+ {% for p in sp | head(3) %}{% include "partials/row.njk" %}{% endfor %}
+{% endif %}{% endfor %}
+{% if loose.length %}
+ {% for issueNum, items in loose | groupby("data.issue") | dictsort | reverse %}
+  <h5 class="cgh">{% if secs.length %}עוד ב{{ cat.name }} · {% endif %}גיליון {{ issueNum }}</h5>
+  {% for p in items %}{% include "partials/row.njk" %}{% endfor %}
+ {% endfor %}
+{% endif %}
+{% if not list.length %}
+ <div class="empty"><div><b>✍️ כאן יופיעו {{ cat.name }}</b><p>עוד אין כאן תכנים. כשתעלה יצירה מהסוג הזה, היא תופיע כאן באותו עיצוב.</p><a href="/send/" class="btn">שליחת יצירה</a></div></div>
+{% endif %}
+</div>
+<section class="wrap talk-wrap">{% set talkId = "cat-" + cat.key %}{% set talkTitle = cat.name %}{% include "partials/talk.njk" %}</section>
