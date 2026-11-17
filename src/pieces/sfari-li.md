@@ -9,5 +9,6 @@ image: /assets/img/books/gift.png
 label: "מיזם מיוחד"
 pdf: "/assets/pdf/pundak-44.pdf#page=36"
 pdf_label: "לקריאה ולהשתתפות בהגרלה"
+section: "תוכן מהעורכת"
 ---
 

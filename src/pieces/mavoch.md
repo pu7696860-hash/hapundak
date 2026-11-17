@@ -9,5 +9,6 @@ image: /assets/img/books/mavoch.jpg
 label: "פרק ראשון"
 pdf: "/assets/pdf/mavoch-chapter1.pdf"
 pdf_label: "לקריאת הפרק הראשון"
+section: "תוכן מתארח"
 ---
 

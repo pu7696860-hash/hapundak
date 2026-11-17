@@ -78,6 +78,9 @@
     var sc = document.createElement("script");
     sc.src = "https://cusdis.com/js/cusdis.es.js";
     sc.async = true; sc.defer = true;
+    var fb = function () { var x = document.querySelector(".talk-fallback"); if (x) x.hidden = false; };
+    sc.onerror = fb;
+    setTimeout(function () { if (!th.querySelector("iframe")) fb(); }, 9000);
     document.body.appendChild(sc);
   }
 })();

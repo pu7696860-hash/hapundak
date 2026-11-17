@@ -9,5 +9,6 @@ image: /assets/img/books/sikun.jpg
 label: "פרקים לדוגמה"
 pdf: "/assets/pdf/pundak-44.pdf#page=24"
 pdf_label: "לקריאה בגיליון המלא"
+section: "תוכן מתארח"
 ---
 

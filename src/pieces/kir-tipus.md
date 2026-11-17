@@ -9,5 +9,6 @@ image: /assets/img/books/kir.jpg
 label: "מתוך הספר"
 pdf: "/assets/pdf/pundak-44.pdf#page=37"
 pdf_label: "לקריאה בגיליון המלא"
+section: "תוכן מתארח"
 ---
 

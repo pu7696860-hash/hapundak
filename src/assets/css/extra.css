@@ -41,3 +41,16 @@
 .secchips a:hover{background:var(--m-mid)}
 .sechead{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .sechead .more{font-size:.85rem;color:var(--m-deep);font-weight:600;white-space:nowrap}
+.k-real{--kc:#2f7d6d}
+@media (min-width:1001px){.tiles{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.nextband{padding-block:clamp(20px,4vw,40px)}
+.nb-in{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;background:var(--m-soft);border:1.5px dashed var(--m-deep);border-radius:18px;padding:22px 26px}
+.nb-ic{width:56px;height:56px;border-radius:50%;background:var(--m-deep);color:#fff;display:grid;place-items:center;font-size:1.5rem}
+.nb-txt h3{font-size:clamp(1.6rem,3.4vw,2.2rem);margin:.2em 0 .15em;color:var(--m-deep)}
+.nb-txt p{margin:.15em 0;color:var(--mute)}
+.nb-txt .nb-dl{color:var(--ink);font-weight:600;font-size:.95rem}
+@media (max-width:700px){.nb-in{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.site .form .fallback{grid-column:1/-1;margin:0;font-size:.85rem;color:var(--mute)}
+.site .form .fallback a,.talk-fallback a{color:var(--m-deep);text-decoration:underline}
+.talk-fallback{font-size:.9rem;color:var(--mute);background:var(--m-soft);padding:12px 14px;border-radius:12px}
+.audio audio{width:100%;margin:6px 0 14px}

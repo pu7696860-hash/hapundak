@@ -1,6 +1,7 @@
 <div class="talk" id="comments"><div class="talk-h"><h4>תגובות</h4><span>מתפרסמות אחרי אישור העורכת</span></div>
 {% if site.cusdis_app_id %}
  <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="{{ site.cusdis_app_id }}" data-page-id="{{ talkId }}" data-page-title="{{ talkTitle }}" data-theme="light"></div>
+ <p class="talk-fallback" hidden>התגובות לא נטענות אצלך? אפשר לשלוח מילה טובה במייל ל-<a href="mailto:{{ site.email }}">{{ site.email }}</a>, ונעביר אותה באהבה.</p>
  <p class="talk-note">🔒 התגובה תופיע אחרי שהעורכת תאשר אותה</p>
 {% else %}
  <div class="c-soon"><b>💬 התגובות ייפתחו כאן ממש בקרוב</b><p>בינתיים אפשר לשלוח מילה טובה דרך <a href="/contact/">צור קשר</a>, ונעביר אותה הלאה באהבה.</p></div>

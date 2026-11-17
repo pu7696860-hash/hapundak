@@ -19,6 +19,13 @@
  {% if more.length %}<h5 class="cgh">בהמשכים, טור אישי ותוכן מקורי</h5><div class="cubes c5">{% for p in more %}{% include "partials/cube.njk" %}{% endfor %}</div>{% endif %}
 </div></section>
 {% endif %}
+{% if I.next_theme %}
+<section class="nextband"><div class="wrap"><div class="nb-in">
+ <div class="nb-ic" aria-hidden="true">✦</div>
+ <div class="nb-txt"><span class="lbl">הצעה והשראה לנושא {{ I.next_issue_label or "הגיליון הבא" }}</span><h3>{{ I.next_theme }}</h3>{% if I.next_note %}<p>{{ I.next_note }}</p>{% endif %}{% if I.next_deadline %}<p class="nb-dl">📅 {{ I.next_deadline }}</p>{% endif %}</div>
+ <a href="/send/" class="btn">שליחת יצירה לגיליון הבא</a>
+</div></div></section>
+{% endif %}
 <section class="printband"><div class="wrap">
  <div class="pb-art">{% set cover = I.cover %}{% include "partials/hands.njk" %}</div>
  <div class="pb-txt"><h3><span class="pr-ic">{% include "partials/i-printer.njk" %}</span>גיליון {{ I.number }} להדפסה</h3><p>כל הגיליון בקובץ אחד, בשחור-לבן. להדפיס בזול, לקרוא על נייר, גם בשבת, ולהשאיל לחברה נחמדת.</p>

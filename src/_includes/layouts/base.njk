@@ -8,9 +8,7 @@
 <title>{% if title %}{{ title }} · {% endif %}{{ site.title }} · {{ site.tagline }}</title>
 <meta name="description" content="{{ teaser or site.description }}">
 <link rel="icon" href="/assets/img/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellefair&family=Noto+Serif+Hebrew:wght@400;600;800&family=Heebo:wght@400;500;600;700;800;900&family=Noto+Sans+Hebrew:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/fonts.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <link rel="stylesheet" href="/assets/css/extra.css">
 </head>
@@ -30,7 +28,10 @@
    {% for s in collections.sections | sectionsOfTab(cats[2]) | inMenu %}<a href="{{ s.url }}"><b>{{ s.data.name }}</b><span>{{ s.data.type }}{% if s.data.author %} · {{ s.data.author }}{% endif %}</span></a>{% endfor %}
    <a href="/hemshechim/"><b>כל המדורים</b><span>הכל במקום אחד</span></a></div></div>
   <a href="/hagigim/" {% if nav == "articles" %}class="on"{% endif %}>הגיגים וכתבות</a>
-  <a href="/makori/" class="hl{% if nav == "original" %} on{% endif %}">תוכן מקורי</a>
+  <div class="dd"><a href="/makori/" class="dd-t hl{% if nav == "original" %} on{% endif %}" aria-haspopup="true">תוכן מקורי <svg viewBox="0 0 12 12" width="10" height="10"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><div class="dd-p">
+   {% for s in collections.sections | sectionsOfTab(cats[5]) | inMenu %}<a href="{{ s.url }}"><b>{{ s.data.name }}</b><span>{{ s.data.description }}</span></a>{% endfor %}
+   <a href="/makori/"><b>כל התוכן המקורי</b><span>הכל במקום אחד</span></a></div></div>
+  <a href="/hachaim/" {% if nav == "reallife" %}class="on"{% endif %}>החיים האמיתיים</a>
   <a href="/archive/" {% if nav == "archive" %}class="on"{% endif %}>ארכיון</a>
   <a href="/about/" {% if nav == "about" %}class="on"{% endif %}>על הפונדק</a>
   <a href="/contact/" {% if nav == "contact" %}class="on"{% endif %}>צור קשר</a>

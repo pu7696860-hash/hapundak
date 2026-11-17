@@ -5,12 +5,14 @@ layout: layouts/base.njk
 {%- set sib = collections.pieces | ofIssue(issue) -%}
 {%- set nb = sib | neighbors(page.url) -%}
 {%- set isPoem = (kind == "שיר") -%}
-<header class="page-h ph-piece"><div class="wrap">{% set fab = false %}{% include "partials/back.njk" %}<nav class="crumb"><a href="/gilayon/{{ issue }}/">גיליון {{ issue }}</a><span>›</span><a href="/{{ c.slug }}/">{{ c.name }}</a><span>›</span>{% if section %}{% set sx = collections.sections | sectionByName(section) %}{% if sx %}<a href="{{ sx.url }}">{{ section }}</a><span>›</span>{% endif %}{% endif %}<b>{{ title }}</b></nav></div></header>
+<header class="page-h ph-piece"><div class="wrap">{% set fab = false %}{% include "partials/back.njk" %}<nav class="crumb">{% if issue %}<a href="/gilayon/{{ issue }}/">גיליון {{ issue }}</a>{% else %}<a href="/">הפונדק</a>{% endif %}<span>›</span><a href="/{{ c.slug }}/">{{ c.name }}</a><span>›</span>{% if section %}{% set sx = collections.sections | sectionByName(section) %}{% if sx %}<a href="{{ sx.url }}">{{ section }}</a><span>›</span>{% endif %}{% endif %}<b>{{ title }}</b></nav></div></header>
 <article class="readpage"><div class="wrap"><div class="rp-grid">
  <div class="rp-main">
   {% if image %}<figure class="rp-img{% if c.key == 'original' %} rp-book{% endif %}"><img src="{{ image }}" alt=""></figure>{% endif %}
-  <span class="lbl">{{ label or section or c.label }} · גיליון {{ issue }}</span><h2>{{ title }}</h2><p class="rp-by">{{ author }}</p>
+  <span class="lbl">{{ label or section or c.label }}{% if issue %} · גיליון {{ issue }}{% endif %}</span><h2>{{ title }}</h2><p class="rp-by">{{ author }}</p>
   {% if content | trim %}<div class="ptext{% if isPoem %} poem2{% endif %}">{{ content | safe }}</div>{% else %}<p class="ptext">{{ teaser }}</p>{% endif %}
+  {% if audio %}<div class="audio"><audio controls preload="none" src="{{ audio | url }}"></audio></div>{% endif %}
+  {% if listen_url %}<p><a href="{{ listen_url }}" class="btn" target="_blank" rel="noopener">🎧 {{ listen_label or "להאזנה" }}</a></p>{% endif %}
   {% if pdf %}<p><a href="{{ pdf }}" class="btn" target="_blank" rel="noopener">{% include "partials/i-book.njk" %} {{ pdf_label or "לקריאה" }}</a></p>{% endif %}
   <div class="rp-end"><a href="mailto:{{ site.email }}?subject={{ ('פרגון ל' + author + ' על "' + title + '"') | urlencode }}" class="thanks">{% include "partials/i-heart.njk" %} לשלוח פרגון לכותבת במייל</a>{% if content | trim %}<button type="button" class="btn ghost js-print">{% include "partials/i-print.njk" %} הדפסת היצירה</button>{% endif %}</div>
   {% if nb %}<nav class="pn"><a href="{{ nb.prev.url }}"><small>→ הקודמת</small><b>{{ nb.prev.data.title }}</b></a><a href="{{ nb.next.url }}"><small>הבאה ←</small><b>{{ nb.next.data.title }}</b></a></nav>{% endif %}
