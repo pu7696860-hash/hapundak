@@ -1,0 +1,127 @@
+# מסך העריכה של הפונדק (Pages CMS: https://app.pagescms.org)
+media:
+  - name: images
+    label: תמונות
+    input: src/assets/img
+    output: /assets/img
+    categories: [image]
+  - name: files
+    label: קובצי PDF
+    input: src/assets/pdf
+    output: /assets/pdf
+    extensions: [pdf, mp3, m4a]
+
+content:
+  - name: issues
+    label: גיליונות
+    type: collection
+    path: src/issues
+    filename: "{fields.number}.md"
+    view:
+      fields: [number, month, theme]
+      primary: number
+      sort: [number]
+      default:
+        sort: number
+        order: desc
+    fields:
+      - { name: number, label: "מספר הגיליון", type: number, required: true }
+      - { name: month, label: "חודש ושנה (למשל: חשון התשפ״ז)", type: string, required: true }
+      - { name: theme, label: "נושא הגיליון", type: string }
+      - { name: cover, label: "תמונת השער", type: image, options: { media: images, path: src/assets/img/covers } }
+      - { name: pdf, label: "קובץ PDF בצבע", type: file, options: { media: files } }
+      - { name: pdf_bw, label: "קובץ PDF בשחור-לבן", type: file, options: { media: files } }
+      - { name: letter_title, label: "כותרת דבר העורכת", type: string }
+      - { name: body, label: "דבר העורכת", type: text }
+      - { name: next_issue_label, label: "הגיליון הבא (למשל: גיליון 45 · חשון-כסליו)", type: string }
+      - { name: next_theme, label: "הצעה לנושא הגיליון הבא (ריק = הרצועה לא מופיעה)", type: string }
+      - { name: next_note, label: "משפט השראה קצר לנושא הבא", type: string }
+      - { name: next_deadline, label: "תאריך אחרון לשליחה", type: string }
+      - { name: quote, label: "ציטוט מודגש (משפט אחד מתוך יצירה)", type: string }
+      - { name: quote_source, label: "מקור הציטוט (למשל: מתוך ״השיר״ · שם הכותבת)", type: string }
+      - { name: color_deep, label: "צבע ראשי של הגיליון (קוד, למשל #3f4f9e)", type: string, default: "#3f4f9e" }
+      - { name: color_soft, label: "צבע רקע בהיר", type: string, default: "#f0f2fb" }
+      - { name: color_mid, label: "צבע ביניים", type: string, default: "#d6dcf6" }
+      - { name: color_pop, label: "צבע הדגשה", type: string, default: "#e0553a" }
+
+  - name: pieces
+    label: יצירות ותכנים
+    type: collection
+    path: src/pieces
+    filename: "{fields.issue}-{year}{month}{day}-{hour}{minute}{second}.md"
+    view:
+      fields: [title, author, kind, issue]
+      primary: title
+      sort: [issue, order]
+      default:
+        sort: issue
+        order: desc
+    fields:
+      - { name: title, label: "שם היצירה", type: string, required: true }
+      - { name: author, label: "שם הכותבת", type: string, required: true }
+      - { name: issue, label: "מספר הגיליון (בהודעות של ״החיים האמיתיים״ לא חובה)", type: number }
+      - name: kind
+        label: "סוג (קובע באיזו לשונית היצירה תופיע)"
+        type: select
+        required: true
+        options:
+          values: ["שיר", "סיפור", "בהמשכים", "הגיגים וכתבות", "תוכן מקורי", "החיים האמיתיים"]
+      - name: section
+        label: "מדור (לא חובה). בוחרים מתוך רשימת המדורים"
+        type: reference
+        options:
+          collection: sections
+          search: "name"
+          value: "{name}"
+          label: "{name}"
+      - { name: teaser, label: "כמה מילים שמגרות לקרוא (מופיע בתוכן העניינים)", type: string }
+      - { name: order, label: "מיקום בתוכן העניינים (1 = ראשון)", type: number, default: 50 }
+      - { name: image, label: "תמונה (לא חובה)", type: image, options: { media: images, path: src/assets/img/pieces } }
+      - { name: label, label: "תווית קטנה (לא חובה, למשל: פרק ראשון)", type: string }
+      - { name: pdf, label: "קובץ PDF לקריאה (לא חובה)", type: file, options: { media: files } }
+      - { name: audio, label: "קובץ שמע לפודקאסט (MP3, לא חובה)", type: file, options: { media: files } }
+      - { name: listen_url, label: "קישור חיצוני להאזנה (לא חובה)", type: string }
+      - { name: pdf_label, label: "טקסט לכפתור ה-PDF", type: string }
+      - { name: body, label: "הטקסט עצמו. כל שורה נשארת שורה. שורה ריקה = פסקה חדשה או בית חדש", type: text }
+
+  - name: sections
+    label: מדורים
+    type: collection
+    path: src/sections
+    filename: "{year}{month}{day}-{hour}{minute}{second}.md"
+    view:
+      fields: [name, author, tab, show_in_menu]
+      primary: name
+      sort: [order]
+    fields:
+      - { name: name, label: "שם המדור", type: string, required: true }
+      - { name: author, label: "כותבת קבועה (לא חובה)", type: string }
+      - name: tab
+        label: "באיזו לשונית המדור יופיע"
+        type: select
+        required: true
+        options:
+          values: ["בהמשכים", "שירים", "סיפורים", "הגיגים וכתבות", "תוכן מקורי", "החיים האמיתיים"]
+      - name: type
+        label: "סוג המדור"
+        type: select
+        options:
+          values: ["טור אישי", "סיפור בהמשכים", "מדור"]
+      - { name: description, label: "משפט קצר על המדור", type: string }
+      - { name: order, label: "סדר הופעה (1 = ראשון)", type: number, default: 10 }
+      - { name: show_in_menu, label: "להציג בתפריט ״בהמשכים״", type: boolean, default: true }
+
+  - name: settings
+    label: הגדרות האתר
+    type: file
+    path: src/_data/site.json
+    format: json
+    fields:
+      - { name: title, label: "שם המגזין", type: string }
+      - { name: tagline, label: "סלוגן", type: string }
+      - { name: description, label: "תיאור קצר", type: string }
+      - { name: email, label: "המייל שאליו מגיעות יצירות והודעות", type: string }
+      - { name: editor, label: "שם העורכת", type: string }
+      - { name: editor_role, label: "תפקיד", type: string }
+      - { name: cusdis_app_id, label: "קוד התגובות מ-Cusdis (App ID)", type: string }
+      - { name: about, label: "טקסט לעמוד ״על הפונדק״", type: text }
