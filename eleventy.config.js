@@ -15,7 +15,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("issues", (api) =>
     api.getFilteredByTag("issue").sort((a, b) => b.data.number - a.data.number));
   eleventyConfig.addCollection("pieces", (api) =>
-    api.getFilteredByTag("piece").sort((a, b) => b.data.issue - a.data.issue || (a.data.order || 99) - (b.data.order || 99)));
+    api.getFilteredByTag("piece").sort((a, b) => (b.data.issue || 0) - (a.data.issue || 0) || (a.data.order || 99) - (b.data.order || 99)));
 
   eleventyConfig.addCollection("sections", (api) =>
     api.getFilteredByTag("section").sort((a, b) => (a.data.order || 99) - (b.data.order || 99)));
