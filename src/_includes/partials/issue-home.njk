@@ -6,14 +6,14 @@
   <h2>{{ I.letter_title or ("גיליון " + I.number + (" · " + I.theme if I.theme else "")) }}</h2>
   <div class="txt">{% if LETTER | trim %}{{ LETTER | safe }}{% else %}<p>כל הגיליון מחכה לך בקובץ אחד: לקריאה בצבע על המסך, או בשחור-לבן להדפסה.</p>{% endif %}</div>
   {% if LETTER | trim %}<div class="sign"><div class="av">{{ site.editor | firstLetter }}</div><div><b>{{ site.editor }}</b><span>{{ site.editor_role }}</span></div></div>{% endif %}
-  <div class="btns">{% if ps.length %}<a href="#toc" class="btn">{% include "partials/i-book.njk" %} לקריאת הגיליון</a>{% else %}<a href="{{ I.pdf }}" class="btn" target="_blank" rel="noopener">{% include "partials/i-book.njk" %} לקריאת הגיליון (PDF)</a>{% endif %}<a href="{{ I.pdf_bw }}" class="btn ghost" download>{% include "partials/i-print.njk" %} PDF שחור-לבן להדפסה</a></div>
+  <div class="btns">{% if ps.length %}<a href="#toc" class="btn">{% include "partials/i-book.njk" %} לקריאת הגיליון</a>{% else %}<a href="{{ I.pdf }}" class="btn" target="_blank" rel="noopener">{% include "partials/i-book.njk" %} לקריאת הגיליון (PDF)</a>{% endif %}<a href="#download" class="btn ghost">{% include "partials/i-print.njk" %} הורדת הגיליון</a></div>
  </div>
  <figure class="cover"><img src="{{ I.cover }}" alt="שער גיליון {{ I.number }}"><figcaption>גיליון {{ I.number }} · {{ I.month }}</figcaption></figure>
 </div></section>
 {% if I.quote %}<section class="quote"><div class="wrap"><div class="q">”</div><blockquote>{{ I.quote }}</blockquote><cite>{{ I.quote_source }}</cite></div></section>{% endif %}
 {% if ps.length %}
 <section class="toc2" id="toc"><div class="wrap">
- <div class="pieces-h"><div><h3>עניינים של תוכן</h3><p class="sub2">כל התכנים של גיליון {{ I.number }}. לחצי על קובייה כדי להיכנס</p></div><div class="legend"><i class="k-poem">שירים</i><i class="k-story">סיפורים</i><i class="k-series">בהמשכים</i><i class="k-orig">תוכן מקורי</i></div></div>
+ <div class="pieces-h"><div><h3>ניגוד עניינים</h3><p class="sub2">עניינו של סיפור טוב הוא ניגוד. כל התכנים של גיליון {{ I.number }}. לחצי על קובייה כדי להיכנס</p></div><div class="legend"><i class="k-poem">שירים</i><i class="k-story">סיפורים</i><i class="k-series">בהמשכים</i><i class="k-orig">תוכן מקורי</i></div></div>
  {% set mw = ps | mainWorks %}{% set more = ps | moreWorks %}
  {% if mw.length %}<h5 class="cgh">יצירות החודש</h5><div class="cubes c6">{% for p in mw %}{% include "partials/cube.njk" %}{% endfor %}</div>{% endif %}
  {% if more.length %}<h5 class="cgh">בהמשכים, טור אישי ותוכן מקורי</h5><div class="cubes c5">{% for p in more %}{% include "partials/cube.njk" %}{% endfor %}</div>{% endif %}
@@ -26,10 +26,10 @@
  <a href="/send/" class="btn">שליחת יצירה לגיליון הבא</a>
 </div></div></section>
 {% endif %}
-<section class="printband"><div class="wrap">
+<section class="printband" id="download"><div class="wrap">
  <div class="pb-art">{% set cover = I.cover %}{% include "partials/hands.njk" %}</div>
- <div class="pb-txt"><h3><span class="pr-ic">{% include "partials/i-printer.njk" %}</span>גיליון {{ I.number }} להדפסה</h3><p>כל הגיליון בקובץ אחד, בשחור-לבן. להדפיס בזול, לקרוא על נייר, גם בשבת, ולהשאיל לחברה נחמדת.</p>
-  <div class="btns"><a href="{{ I.pdf_bw }}" class="btn" download>{% include "partials/i-print.njk" %} הורדת PDF שחור-לבן</a><a href="/archive/" class="btn ghost">{% include "partials/i-book.njk" %} גיליונות קודמים</a></div></div>
+ <div class="pb-txt"><h3><span class="pr-ic">{% include "partials/i-printer.njk" %}</span>גיליון {{ I.number }} להורדה ולהדפסה</h3><p>כל הגיליון בקובץ אחד, בשתי גרסאות. בצבע מלא, לקריאה במחשב או בטלפון בלי חיבור לאינטרנט, ובשחור-לבן, להדפיס בזול, לקרוא על נייר, גם בשבת, ולהשאיל לחברה נחמדת.</p>
+  <div class="btns"><a href="{{ I.pdf }}" class="btn" download>{% include "partials/i-book.njk" %} הורדת PDF בצבע מלא</a><a href="{{ I.pdf_bw }}" class="btn" download>{% include "partials/i-print.njk" %} הורדת PDF שחור-לבן</a><a href="/archive/" class="btn ghost">{% include "partials/i-book.njk" %} גיליונות קודמים</a></div></div>
 </div></section>
 <section class="cats"><div class="wrap"><div class="pieces-h"><div><h3>אפשר לדפדף גם מכאן</h3><p class="sub2">לא כזה משנה, אבל מה שנוח לך 😊</p></div></div>
  <div class="tiles">
