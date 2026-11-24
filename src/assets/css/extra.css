@@ -54,3 +54,6 @@
 .site .form .fallback a,.talk-fallback a{color:var(--m-deep);text-decoration:underline}
 .talk-fallback{font-size:.9rem;color:var(--mute);background:var(--m-soft);padding:12px 14px;border-radius:12px}
 .audio audio{width:100%;margin:6px 0 14px}
+/* טופס תגובה: טור אחד גם בעמודה הצרה */
+.talk .form{grid-template-columns:1fr}
+.talk .form .fallback{margin:0;font-size:.85rem;color:var(--mute)}

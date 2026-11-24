@@ -36,6 +36,10 @@
         }
         var t = f.querySelector('[name="שם היצירה"]').value.trim(), n = f.querySelector('[name="שם לפרסום"]').value.trim();
         f.querySelector('[name="_subject"]').value = "יצירה חדשה לפונדק: " + t + " / " + n;
+      } else if (f.dataset.kind === "comment") {
+        var cn = f.querySelector('[name="שם"]').value.trim();
+        f.querySelector('[name="כתובת העמוד"]').value = location.href;
+        f.querySelector('[name="_subject"]').value = "תגובה חדשה על: " + f.dataset.page + " / מאת " + cn;
       } else {
         var s = f.querySelector('[name="נושא"]').value, nm = f.querySelector('[name="שם"]').value.trim();
         f.querySelector('[name="_subject"]').value = "הודעה מהאתר (" + s + ") מאת " + nm;
@@ -52,35 +56,9 @@
   });
 
   // Thank-you page text
-  if (location.search.indexOf("t=contact") > -1) {
+  var tk = location.search.indexOf("t=comment") > -1 ? "comment" : (location.search.indexOf("t=contact") > -1 ? "contact" : "");
+  if (tk) {
     document.querySelectorAll(".ty-send").forEach(function (el) { el.hidden = true; });
-    document.querySelectorAll(".ty-contact").forEach(function (el) { el.hidden = false; });
-  }
-
-  // Comments (Cusdis), in Hebrew
-  var th = document.getElementById("cusdis_thread");
-  if (th) {
-    th.setAttribute("data-page-url", location.origin + location.pathname);
-    window.CUSDIS_LOCALE = {
-      powered_by: "התגובות מופעלות על ידי",
-      post_comment: "שליחת תגובה",
-      loading: "טוען...",
-      email: "מייל (לא חובה, לא יפורסם)",
-      nickname: "שם או כינוי",
-      reply_placeholder: "מה הרגשת כשקראת?",
-      reply_btn: "תגובה",
-      sending: "שולחת...",
-      mod_badge: "הפונדק",
-      content_is_required: "צריך לכתוב תגובה",
-      nickname_is_required: "צריך שם או כינוי",
-      comment_has_been_sent: "תודה! התגובה תופיע אחרי שהעורכת תאשר אותה 💛"
-    };
-    var sc = document.createElement("script");
-    sc.src = "https://cusdis.com/js/cusdis.es.js";
-    sc.async = true; sc.defer = true;
-    var fb = function () { var x = document.querySelector(".talk-fallback"); if (x) x.hidden = false; };
-    sc.onerror = fb;
-    setTimeout(function () { if (!th.querySelector("iframe")) fb(); }, 9000);
-    document.body.appendChild(sc);
+    document.querySelectorAll(".ty-" + tk).forEach(function (el) { el.hidden = false; });
   }
 })();

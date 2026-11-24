@@ -1,9 +1,9 @@
 ---
 name: "סיפור בתוך סיפור"
 author: ""
-tab: "בהמשכים"
+tab: "תוכן מקורי"
 type: "מדור"
 description: "מדור קבוע. יחזור בגיליונות הבאים"
-order: 7
+order: 5
 show_in_menu: true
 ---

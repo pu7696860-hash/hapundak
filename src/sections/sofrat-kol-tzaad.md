@@ -1,9 +1,9 @@
 ---
 name: "סופרת כל צעד"
 author: ""
-tab: "בהמשכים"
+tab: "תוכן מקורי"
 type: "מדור"
 description: "מדור קבוע. יחזור בגיליונות הבאים"
-order: 6
+order: 4
 show_in_menu: true
 ---

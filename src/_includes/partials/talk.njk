@@ -1,9 +1,16 @@
-<div class="talk" id="comments"><div class="talk-h"><h4>תגובות</h4><span>מתפרסמות אחרי אישור העורכת</span></div>
-{% if site.cusdis_app_id %}
- <div id="cusdis_thread" data-host="https://cusdis.com" data-app-id="{{ site.cusdis_app_id }}" data-page-id="{{ talkId }}" data-page-title="{{ talkTitle }}" data-theme="light"></div>
- <p class="talk-fallback" hidden>התגובות לא נטענות אצלך? אפשר לשלוח מילה טובה במייל ל-<a href="mailto:{{ site.email }}">{{ site.email }}</a>, ונעביר אותה באהבה.</p>
- <p class="talk-note">🔒 התגובה תופיע אחרי שהעורכת תאשר אותה</p>
-{% else %}
- <div class="c-soon"><b>💬 התגובות ייפתחו כאן ממש בקרוב</b><p>בינתיים אפשר לשלוח מילה טובה דרך <a href="/contact/">צור קשר</a>, ונעביר אותה הלאה באהבה.</p></div>
-{% endif %}
+<div class="talk" id="comments"><div class="talk-h"><h4>תגובות</h4><span>נבחרות מתפרסמות באתר</span></div>
+ <form class="form fly-form" data-kind="comment" data-page="{{ talkTitle }}" action="https://formsubmit.co/{{ site.email }}" method="POST">
+  <input type="hidden" name="_subject" value="תגובה חדשה">
+  <input type="hidden" name="_next" value="">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="העמוד" value="{{ talkTitle }}">
+  <input type="hidden" name="כתובת העמוד" value="">
+  <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label class="full">שם או כינוי<input name="שם" required placeholder="איך לקרוא לך?"></label>
+  <label class="full">התגובה שלך<textarea name="תגובה" rows="4" required placeholder="מה הרגשת כשקראת?"></textarea></label>
+  <div class="full sendwrap"><button class="send" type="submit"><span class="fill"></span><span class="t">שליחת תגובה</span><span class="done">התגובה נשלחה ✓</span></button></div>
+  <p class="fallback">הטופס לא נשלח אצלך? אפשר לשלוח את התגובה במייל: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+ </form>
+ <p class="talk-note">🔒 התגובה מגיעה אל העורכת, והנבחרות מתפרסמות כאן</p>
 </div>
