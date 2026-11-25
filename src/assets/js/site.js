@@ -98,6 +98,8 @@
       e.preventDefault();
       t.scrollIntoView({ behavior: "smooth", block: "start" });
       var cc = t.querySelector(".cc-author"); if (cc) cc.checked = true;
+      t.classList.remove("is-praise"); void t.offsetWidth; t.classList.add("is-praise");
+      var pn = t.querySelector(".praise-note"); if (pn) pn.hidden = false;
       var ta = t.querySelector("textarea");
       if (ta) { if (!ta.value) ta.placeholder = "כמה מילים טובות לכותבת..."; setTimeout(function () { ta.focus({ preventScroll: true }); }, 400); }
     });

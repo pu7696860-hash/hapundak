@@ -66,3 +66,15 @@
 }
 /* פרגון לכותבת: קישור לטופס התגובה */
 .rp-end .thanks{cursor:pointer}
+/* אחרי לחיצה על "לכתוב פרגון": כל אזור התגובות מודגש בצבע בולט, עם פעימה והודעה */
+.talk{border-radius:16px;transition:background .3s,box-shadow .3s}
+.talk.is-praise{background:var(--m-soft);padding:16px;margin:-16px;box-shadow:0 0 0 3px var(--m-pop),0 12px 32px rgba(224,85,58,.22);animation:praisePulse 1.1s ease-out 2}
+.praise-note{margin:0 0 12px;padding:10px 14px;border-radius:10px;background:var(--m-pop);color:#fff;font-weight:700;font-size:1rem}
+.talk.is-praise textarea{border:2px solid var(--m-pop);box-shadow:0 0 0 5px rgba(224,85,58,.25);outline:none}
+@keyframes praisePulse{0%{box-shadow:0 0 0 0 rgba(224,85,58,.7)}100%{box-shadow:0 0 0 3px var(--m-pop),0 12px 32px rgba(224,85,58,.22)}}
+@media (prefers-reduced-motion:reduce){.talk.is-praise{animation:none}}
+/* תגובות שאושרו */
+.talk-list{display:grid;gap:10px;margin:0 0 16px}
+.talk-list .tc{background:var(--m-soft);border-radius:12px;padding:12px 14px}
+.talk-list .tc b{display:block;color:var(--m-deep)}
+.talk-list .tc p{margin:.3em 0 0;white-space:pre-line;line-height:1.7}

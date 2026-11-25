@@ -1,4 +1,9 @@
+{#- תגובות שאושרו (מתוך src/_data/comments.json, נערך במסך העריכה) -#}
+{%- set approved = [] -%}
+{%- for c in comments.items -%}{%- if c.piece == talkTitle -%}{%- set _p = approved.push(c) -%}{%- endif -%}{%- endfor -%}
 <div class="talk" id="comments"><div class="talk-h"><h4>תגובות</h4><span>מתפרסמות אחרי אישור העורכת</span></div>
+ {% if approved | length %}<div class="talk-list">{% for c in approved %}<div class="tc"><b>{{ c.name }}</b><p>{{ c.text }}</p></div>{% endfor %}</div>{% endif %}
+ <p class="praise-note" hidden>💛 כותבות פרגון{% if author %} ל{{ author }}{% endif %}. כמה מילים טובות עושות הרבה.</p>
  <form class="form fly-form" data-kind="comment" data-page="{{ talkTitle }}" action="https://formsubmit.co/{{ site.email }}" method="POST">
   <input type="hidden" name="_subject" value="תגובה חדשה">
   <input type="hidden" name="_next" value="">
