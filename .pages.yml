@@ -59,7 +59,6 @@ content:
     fields:
       - { name: title, label: "שם היצירה", type: string, required: true }
       - { name: author, label: "שם הכותבת", type: string, required: true }
-      - { name: author_email, label: "מייל הכותבת (לא חובה)", description: "אם ממלאים, מתחת לתיבת התגובה יופיע סימון ״לשלוח את התגובה גם לכותבת״", type: string }
       - { name: issue, label: "מספר הגיליון (בהודעות של ״החיים האמיתיים״ לא חובה)", type: number }
       - name: kind
         label: "סוג (קובע באיזו לשונית היצירה תופיע)"
