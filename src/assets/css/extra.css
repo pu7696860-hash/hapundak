@@ -73,6 +73,25 @@
 .talk.is-praise textarea{border:2px solid var(--m-pop);box-shadow:0 0 0 5px rgba(224,85,58,.25);outline:none}
 @keyframes praisePulse{0%{box-shadow:0 0 0 0 rgba(224,85,58,.7)}100%{box-shadow:0 0 0 3px var(--m-pop),0 12px 32px rgba(224,85,58,.22)}}
 @media (prefers-reduced-motion:reduce){.talk.is-praise{animation:none}}
+/* מעבר בין גיליונות */
+.topline .tl-new{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.iswitch{background:var(--m-soft);border-block-end:1px solid var(--m-mid)}
+.iswitch .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding-block:14px}
+.is-now{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:1.02rem}
+.is-now b{color:var(--m-deep);font-size:1.12rem}
+.is-badge{background:var(--m-pop);color:#fff;font-weight:700;font-size:.85rem;border-radius:999px;padding:4px 12px}
+.is-old .is-badge{background:var(--mute)}
+.is-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.is-step{font-weight:700;color:var(--m-deep);padding:6px 10px;border-radius:10px;white-space:nowrap}
+.is-step:hover{background:var(--m-mid)}
+.is-chips{display:flex;flex-wrap:wrap;gap:6px}
+.is-chips a{min-width:40px;text-align:center;padding:5px 10px;border-radius:999px;background:#fff;border:1px solid var(--m-mid);color:var(--m-deep);font-weight:600;font-size:.92rem}
+.is-chips a:hover{background:var(--m-mid)}
+.is-chips a.on{background:var(--m-deep);border-color:var(--m-deep);color:#fff}
+.is-chips small{font-size:.7rem;color:var(--m-pop);font-weight:700}
+.is-chips a.on small{color:#fff}
+.iswitch .is-back{margin-inline-start:auto}
+@media (max-width:700px){.iswitch .wrap{flex-direction:column;align-items:stretch}.iswitch .is-back{margin-inline-start:0;text-align:center}}
 /* תגובות שאושרו */
 .talk-list{display:grid;gap:10px;margin:0 0 16px}
 .talk-list .tc{background:var(--m-soft);border-radius:12px;padding:12px 14px}

@@ -14,14 +14,15 @@
 </head>
 <body>
 <div class="site" style="--m-deep:{{ ci.data.color_deep }};--m-soft:{{ ci.data.color_soft }};--m-mid:{{ ci.data.color_mid }};--m-pop:{{ ci.data.color_pop }}">
- <div class="topline"><div class="wrap"><span><b>גיליון {{ cur.data.number }}</b> · {{ cur.data.month }}</span><span>{{ site.description }}</span></div></div>
+ {%- set isOld = (ci.data.number != cur.data.number) -%}
+ <div class="topline"><div class="wrap">{% if isOld %}<span>את בגיליון קודם: <b>גיליון {{ ci.data.number }}</b> · {{ ci.data.month }}</span><a href="/" class="tl-new">לגיליון החדש, גיליון {{ cur.data.number }} ←</a>{% else %}<span><b>גיליון {{ cur.data.number }}</b> · {{ cur.data.month }} · הגיליון החדש</span><a href="/archive/" class="tl-new">לכל הגיליונות ←</a>{% endif %}</div></div>
  <header class="mast"><div class="wrap">
-  <div class="date"><b>גיליון {{ cur.data.number }}</b>{{ cur.data.month }}</div>
+  <div class="date"><b>גיליון {{ ci.data.number }}</b>{{ ci.data.month }}{% if isOld %} · גיליון קודם{% endif %}</div>
   <a href="/" class="logo"><img src="/assets/img/logo.png" alt="פונדק, ארוחה בטעם דיו"></a>
   <div class="act">{% set sid = "top" %}{% include "partials/stamp.njk" %}</div>
  </div></header>
  <nav class="menu" aria-label="תפריט ראשי"><div class="wrap">
-  <a href="/" {% if nav == "home" %}class="on"{% endif %}>הגיליון</a>
+  <a href="/" {% if nav == "home" %}class="on"{% endif %}>הגיליון החדש</a>
   <a href="/shirim/" {% if nav == "poems" %}class="on"{% endif %}>שירים</a>
   <a href="/sipurim/" {% if nav == "stories" %}class="on"{% endif %}>סיפורים</a>
   <div class="dd"><a href="/hemshechim/" class="dd-t{% if nav == "series" %} on{% endif %}" aria-haspopup="true">בהמשכים <svg viewBox="0 0 12 12" width="10" height="10"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><div class="dd-p">
@@ -32,7 +33,7 @@
    {% for s in collections.sections | sectionsOfTab(cats[5]) | inMenu %}<a href="{{ s.url }}"><b>{{ s.data.name }}</b><span>{{ s.data.description }}</span></a>{% endfor %}
    <a href="/makori/"><b>כל התוכן המקורי</b><span>הכל במקום אחד</span></a></div></div>
   <a href="/hachaim/" {% if nav == "reallife" %}class="on"{% endif %}>החיים האמיתיים</a>
-  <a href="/archive/" {% if nav == "archive" %}class="on"{% endif %}>ארכיון</a>
+  <a href="/archive/" {% if nav == "archive" %}class="on"{% endif %}>כל הגיליונות</a>
   <a href="/about/" {% if nav == "about" %}class="on"{% endif %}>על הפונדק</a>
   <a href="/contact/" {% if nav == "contact" %}class="on"{% endif %}>צור קשר</a>
  </div></nav>
@@ -40,7 +41,7 @@
 {{ content | safe }}
  </main>
  {% if nav != "home" %}{% set fab = true %}{% include "partials/back.njk" %}{% endif %}
- <footer class="foot"><div class="wrap"><img src="/assets/img/logo.png" alt="פונדק"><p>{{ site.description }} · כל הזכויות על היצירות שמורות ליוצרות</p><nav><a href="/about/">על הפונדק</a><a href="/send/">שליחת יצירה</a><a href="/archive/">ארכיון</a><a href="/contact/">צור קשר</a></nav></div></footer>
+ <footer class="foot"><div class="wrap"><img src="/assets/img/logo.png" alt="פונדק"><p>{{ site.description }} · כל הזכויות על היצירות שמורות ליוצרות</p><nav><a href="/about/">על הפונדק</a><a href="/send/">שליחת יצירה</a><a href="/archive/">כל הגיליונות</a><a href="/contact/">צור קשר</a></nav></div></footer>
  <a href="/todah/" id="thanks-link" hidden></a>
 </div>
 <div id="fx-tea" hidden><div class="fx fx-tea"><svg class="steam" viewBox="0 0 120 120" fill="none" stroke-linecap="round"><path class="s1" d="M48 112c-8-12 8-18 0-30s8-18 0-30"/><path class="s2" d="M72 112c-8-12 8-18 0-30s8-18 0-30"/><path class="hrt" d="M60 40C52 28 34 32 36 44c2 10 24 22 24 22s22-12 24-22c2-12-16-16-24-4z"/></svg><svg class="cup" viewBox="0 0 48 40" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"><path d="M6 8h28v12a12 12 0 0 1-12 12h-4A12 12 0 0 1 6 20z"/><path d="M34 12h4a5 5 0 0 1 0 10h-5"/><path d="M4 37h34"/></svg></div></div>

@@ -1,5 +1,24 @@
 {#- expects: I (issue data), LETTER (html) -#}
 {%- set ps = collections.pieces | ofIssue(I.number) -%}
+{#- מעבר בין גיליונות: איזה גיליון רואים עכשיו, הקודם, הבא, וכל הגיליונות -#}
+{%- set all = collections.issues -%}
+{%- set newest = all[0].data -%}
+{%- set pos = [] -%}{%- for x in all -%}{%- if x.data.number == I.number -%}{%- set _p = pos.push(loop.index0) -%}{%- endif -%}{%- endfor -%}
+{%- set idx = pos[0] if pos.length else 0 -%}
+{%- set isNewer = all[idx - 1] if idx > 0 else false -%}
+{%- set isOlder = all[idx + 1] if idx + 1 < all.length else false -%}
+<nav class="iswitch{% if idx > 0 %} is-old{% endif %}" aria-label="מעבר בין גיליונות"><div class="wrap">
+ <div class="is-now">
+  {% if idx == 0 %}<span class="is-badge">✦ הגיליון החדש</span>{% else %}<span class="is-badge">גיליון קודם</span>{% endif %}
+  <span>את קוראת עכשיו: <b>גיליון {{ I.number }}</b> · {{ I.month }}{% if I.theme %} · {{ I.theme }}{% endif %}</span>
+ </div>
+ <div class="is-nav">
+  {% if isOlder %}<a href="{{ isOlder.url }}" class="is-step">→ גיליון {{ isOlder.data.number }}</a>{% endif %}
+  <div class="is-chips">{% for x in all %}<a href="{{ x.url }}"{% if x.data.number == I.number %} aria-current="page" class="on"{% endif %} title="גיליון {{ x.data.number }} · {{ x.data.month }}">{{ x.data.number }}{% if loop.first %} <small>חדש</small>{% endif %}</a>{% endfor %}</div>
+  {% if isNewer %}<a href="{{ isNewer.url }}" class="is-step">גיליון {{ isNewer.data.number }} ←</a>{% endif %}
+ </div>
+ {% if idx > 0 %}<a href="/" class="btn is-back">לגיליון החדש: גיליון {{ newest.number }} ←</a>{% endif %}
+</div></nav>
 <section class="letter"><div class="wrap">
  <div>
   <span class="lbl">{% if LETTER | trim %}דבר העורכת{% else %}גיליון {{ I.number }}{% endif %}</span>
