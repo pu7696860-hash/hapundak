@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/neot-midbar.jpg
 author: "צ. נר"
 issue: 44
 order: 13

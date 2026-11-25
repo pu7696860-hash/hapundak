@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/ner-ananut.jpg
 author: "צ. נר"
 issue: 44
 kind: "סיפור"

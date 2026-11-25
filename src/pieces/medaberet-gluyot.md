@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/gluyot.jpg
 title: "מדברת גלויות"
 author: "סמדר חדד"
 issue: 44

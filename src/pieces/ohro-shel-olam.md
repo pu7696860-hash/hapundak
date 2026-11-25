@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/ohro.jpg
 title: "אורו של עולם"
 author: "תמי אפשטיין"
 issue: 44

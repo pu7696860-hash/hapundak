@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/sarit.jpg
 title: "הפכה את ע(א)ורה · פרק א׳"
 author: "שרית"
 issue: 44

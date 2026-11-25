@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/nefesh.jpg
 title: "נפש חפצה"
 author: "מיכל גרוסמן"
 issue: 44

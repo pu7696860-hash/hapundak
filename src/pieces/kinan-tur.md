@@ -1,4 +1,5 @@
 ---
+image: /assets/img/books/mavoch.jpg
 author: "מ. קינן"
 issue: 44
 order: 14

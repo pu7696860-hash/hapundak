@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/shoshelet.jpg
 title: "שושלת"
 author: "רחלי רוזנפלד"
 issue: 44

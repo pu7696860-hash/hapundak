@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/hofshtetter-shir.jpg
 author: "חדוה הופשטטר"
 issue: 44
 kind: "שיר"

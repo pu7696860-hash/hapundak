@@ -1,4 +1,5 @@
 ---
+image: /assets/img/pieces/pil.jpg
 title: "יש פיל בחדר: מאחורי הקלעים"
 author: "חוי שטיגל"
 issue: 44
