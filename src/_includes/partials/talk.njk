@@ -9,8 +9,11 @@
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="full">שם או כינוי<input name="שם" required placeholder="איך לקרוא לך?"></label>
   <label class="full">התגובה שלך<textarea name="תגובה" rows="4" required placeholder="מה הרגשת כשקראת?"></textarea></label>
+  {% if author_email %}<label class="chk full"><input type="checkbox" class="cc-author" data-email="{{ author_email }}"> לשלוח את התגובה גם לכותבת, {{ author }}</label>{% endif %}
   <div class="full sendwrap"><button class="send" type="submit"><span class="fill"></span><span class="t">שליחת תגובה</span><span class="done">התגובה נשלחה ✓</span></button></div>
+  <p class="ok" hidden>תודה! התגובה הגיעה אל העורכת 💛</p>
+  <p class="err" hidden></p>
   <p class="fallback">הטופס לא נשלח אצלך? אפשר לשלוח את התגובה במייל: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
  </form>
- <p class="talk-note">🔒 התגובה מגיעה אל העורכת, ומתפרסמות לאחר אישור</p>
+ <p class="talk-note">🔒 התגובות מגיעות אל העורכת, ומתפרסמות לאחר אישור</p>
 </div>
