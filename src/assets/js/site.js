@@ -39,7 +39,8 @@
       } else if (f.dataset.kind === "comment") {
         var cn = f.querySelector('[name="שם"]').value.trim();
         f.querySelector('[name="כתובת העמוד"]').value = location.href;
-        f.querySelector('[name="_subject"]').value = "תגובה חדשה על: " + f.dataset.page + " / מאת " + cn;
+        var fw = f.querySelector(".cc-author");
+        f.querySelector('[name="_subject"]').value = (fw && fw.checked ? "💌 להעביר לכותבת · " : "") + "תגובה חדשה על: " + f.dataset.page + " / מאת " + cn;
       } else {
         var s = f.querySelector('[name="נושא"]').value, nm = f.querySelector('[name="שם"]').value.trim();
         f.querySelector('[name="_subject"]').value = "הודעה מהאתר (" + s + ") מאת " + nm;
@@ -50,8 +51,6 @@
       if (ajax) {
         var data = {};
         new FormData(f).forEach(function (v, k) { if (k !== "_next") data[k] = v; });
-        var cc = f.querySelector(".cc-author");
-        if (cc && cc.checked) data._cc = cc.dataset.email;
         sending = fetch(f.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -90,7 +89,7 @@
     });
   });
 
-  // פרגון לכותבת: קפיצה לטופס התגובה, סימון "לשלוח גם לכותבת" (אם יש לה מייל) ומיקוד בתיבת הטקסט
+  // פרגון לכותבת: קפיצה לטופס התגובה, סימון "להעביר גם לכותבת" ומיקוד בתיבת הטקסט
   document.querySelectorAll(".js-praise").forEach(function (a) {
     a.addEventListener("click", function (e) {
       var t = document.getElementById("comments");
