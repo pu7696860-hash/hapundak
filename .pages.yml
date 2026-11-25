@@ -129,8 +129,8 @@ content:
             options:
               collection: pieces
               search: "title"
-              value: "{title}"
-              label: "{title} ({author})"
+              value: "{title} ({author})"
+              label: "{title} ({author}) · גיליון {issue}"
           - { name: name, label: "שם או כינוי של המגיבה", type: string, required: true }
           - { name: text, label: "התגובה (אפשר להעתיק מהמייל)", type: text, required: true }
 
