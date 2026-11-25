@@ -59,6 +59,7 @@ content:
     fields:
       - { name: title, label: "שם היצירה", type: string, required: true }
       - { name: author, label: "שם הכותבת", type: string, required: true }
+      - { name: author_email, label: "מייל הכותבת (לא חובה)", description: "אם ממלאים, מתחת לתיבת התגובה יופיע סימון ״לשלוח את התגובה גם לכותבת״", type: string }
       - { name: issue, label: "מספר הגיליון (בהודעות של ״החיים האמיתיים״ לא חובה)", type: number }
       - name: kind
         label: "סוג (קובע באיזו לשונית היצירה תופיע)"
@@ -111,6 +112,29 @@ content:
       - { name: order, label: "סדר הופעה (1 = ראשון)", type: number, default: 10 }
       - { name: show_in_menu, label: "להציג בתפריט ״בהמשכים״", type: boolean, default: true }
 
+  - name: comments
+    label: תגובות מאושרות
+    type: file
+    path: src/_data/comments.json
+    format: json
+    fields:
+      - name: items
+        label: "התגובות שמתפרסמות באתר (״הוסף״ = תגובה חדשה)"
+        type: object
+        list: true
+        fields:
+          - name: piece
+            label: "על איזו יצירה"
+            type: reference
+            required: true
+            options:
+              collection: pieces
+              search: "title"
+              value: "{title}"
+              label: "{title} ({author})"
+          - { name: name, label: "שם או כינוי של המגיבה", type: string, required: true }
+          - { name: text, label: "התגובה (אפשר להעתיק מהמייל)", type: text, required: true }
+
   - name: settings
     label: הגדרות האתר
     type: file
@@ -123,5 +147,4 @@ content:
       - { name: email, label: "המייל שאליו מגיעות יצירות והודעות", type: string }
       - { name: editor, label: "שם העורכת", type: string }
       - { name: editor_role, label: "תפקיד", type: string }
-      - { name: cusdis_app_id, label: "קוד התגובות מ-Cusdis (App ID)", type: string }
       - { name: about, label: "טקסט לעמוד ״על הפונדק״", type: text }
